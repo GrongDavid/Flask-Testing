@@ -1,0 +1,35 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+    <table id="board">
+        {% for list in board %}
+        <tr>
+            {% for word in list %}
+            <td><button>{{word}}</button></td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h4 class="timer">Time left:</h4>
+    <h4>Score: {{score}} achieved in {{times_played}} plays</h4> 
+
+    <form method="GET" class="add-word">
+        <input name="word" class="word">
+        <button type="submit">Submit</button>
+    </form>
+
+    <p class="message"></p>
+    <ul class="words"></ul>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/flask-boggle/static/app.js"></script>
+    <script>
+        console.log('starting boggle game...');
+        let game = new BoggleGame("boggle", 120);
+        console.log('Game: ', game);
+    </script>
+
+{% endblock %}
